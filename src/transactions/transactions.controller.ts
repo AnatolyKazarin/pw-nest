@@ -11,8 +11,8 @@ export class TransactionsController {
 
   @Get()
   @UseGuards(JwtGuard)
-  public async getTransactions() {
-    return this.transactionsService.getTransactions();
+  public async getTransactions(@UserId() userId: number) {
+    return this.transactionsService.getTransactions(userId);
   }
 
   @Post()

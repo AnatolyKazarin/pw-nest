@@ -12,8 +12,11 @@ export class TransactionsService {
     private readonly usersService: UsersService,
   ) {}
 
-  async getTransactions(): Promise<Transaction[]> {
-    return await this.transactionRepository.findAll();
+  async getTransactions(id: number): Promise<Transaction[]> {
+    console.log('id', id);
+    return await this.transactionRepository.findAll({
+      where: { senderId: id },
+    });
   }
 
   async createTransaction(

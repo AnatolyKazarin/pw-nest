@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './users.model';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class UsersService {
@@ -25,5 +26,11 @@ export class UsersService {
   async updateUserBalance(user: User, balance: number) {
     user.balance = balance;
     await user.save();
+  }
+
+  async getUsersByFilter(filter: string): Promise<User[]> {
+    return await this.userRepository.findAll({
+      where: { username: { [Op.regexp]: filter } },
+    });
   }
 }
