@@ -17,7 +17,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(dto: CreateUserDto) {
+  async login(dto: Omit<CreateUserDto, 'username'>) {
     const user = await this.validateUser(dto);
     return this.generateToken(user);
   }
@@ -30,6 +30,7 @@ export class AuthService {
         HttpStatus.BAD_REQUEST,
       );
     }
+    console.log('Dto', dto);
     const hashedPassword = await bcrypt.hash(dto.password, 5);
     const user = await this.usersService.createUser({
       ...dto,
@@ -39,19 +40,26 @@ export class AuthService {
   }
 
   private async generateToken(user: User) {
-    const payload = { email: user.email };
-    return { token: this.jwtService.sign(payload) };
+    const payload = { email: user.email, id: user.id };
+    return { token: await this.jwtService.signAsync(payload) };
   }
 
-  private async validateUser(dto: CreateUserDto) {
+  private async validateUser(dto: Omit<CreateUserDto, 'username'>) {
     const user = await this.usersService.getUserByEmail(dto.email);
+    if (!user) {
+      throw new UnauthorizedException({
+        message: `User with ${dto.email} not found`,
+      });
+    }
     const arePasswordsEquals = await bcrypt.compare(
       dto.password,
       user.password,
     );
-    if (user && arePasswordsEquals) {
-      return user;
+    if (!arePasswordsEquals) {
+      throw new UnauthorizedException({
+        message: 'Password is invalid',
+      });
     }
-    throw new UnauthorizedException({ message: 'User not found' });
+    return user;
   }
 }

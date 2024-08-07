@@ -17,4 +17,13 @@ export class UsersService {
       include: { all: true },
     });
   }
+
+  async getUserById(id: number): Promise<User> {
+    return await this.userRepository.findByPk(id);
+  }
+
+  async updateUserBalance(user: User, balance: number) {
+    user.balance = balance;
+    await user.save();
+  }
 }

@@ -1,6 +1,7 @@
 import { Column, Model, Table, DataType } from 'sequelize-typescript';
 
 interface UserCreationAttribute {
+  username: string;
   email: string;
   password: string;
 }
@@ -17,9 +18,9 @@ export class User extends Model<User, UserCreationAttribute> {
 
   @Column({
     type: DataType.STRING,
-    defaultValue: false,
+    allowNull: false,
   })
-  name: string;
+  username: string;
 
   @Column({
     type: DataType.STRING,
@@ -35,7 +36,8 @@ export class User extends Model<User, UserCreationAttribute> {
   password: string;
 
   @Column({
-    type: DataType.FLOAT,
+    type: DataType.NUMBER,
+    defaultValue: 500,
   })
   balance: number;
 }
