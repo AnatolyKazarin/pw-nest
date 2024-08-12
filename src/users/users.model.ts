@@ -54,7 +54,7 @@ export class User extends Model<User, UserCreationAttribute> {
     example: 500,
   })
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     defaultValue: 500,
   })
   balance: number;
