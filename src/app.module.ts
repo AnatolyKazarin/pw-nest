@@ -19,7 +19,9 @@ import { Transaction } from './transactions/transactions.model';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      ssl: true,
+      dialectOptions: {
+        ssl: true,
+      },
       models: [User, Transaction],
       autoLoadModels: true,
     }),
