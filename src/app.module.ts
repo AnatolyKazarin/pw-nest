@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/users.model';
 import { AuthModule } from './auth/auth.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { Transaction } from './transactions/transactions.model';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { TransactionsModule } from './transactions/transactions.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User],
+      ssl: true,
+      models: [User, Transaction],
       autoLoadModels: true,
     }),
     UsersModule,
