@@ -20,6 +20,7 @@ import { Transaction } from './transactions/transactions.model';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
       dialectOptions: {
+        ssl: true,
         rejectUnauthorized: true,
         ca: `-----BEGIN CERTIFICATE-----
 MIIEQTCCAqmgAwIBAgIUCH71G1RSxhA8owIZi55hqKBr5D0wDQYJKoZIhvcNAQEM
