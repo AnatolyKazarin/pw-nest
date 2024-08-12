@@ -22,8 +22,7 @@ import { Transaction } from './transactions/transactions.model';
       dialectOptions: {
         ssl: true,
         rejectUnauthorized: true,
-        ca: `-----BEGIN CERTIFICATE-----
-MIIEQTCCAqmgAwIBAgIUCH71G1RSxhA8owIZi55hqKBr5D0wDQYJKoZIhvcNAQEM
+        ca: `MIIEQTCCAqmgAwIBAgIUCH71G1RSxhA8owIZi55hqKBr5D0wDQYJKoZIhvcNAQEM
 BQAwOjE4MDYGA1UEAwwvYjIxMDVkOWYtNzU4Ny00ZjgxLTg3ZDEtM2Y0ZjdmZDgz
 NDE0IFByb2plY3QgQ0EwHhcNMjQwODEyMTEwNzUzWhcNMzQwODEwMTEwNzUzWjA6
 MTgwNgYDVQQDDC9iMjEwNWQ5Zi03NTg3LTRmODEtODdkMS0zZjRmN2ZkODM0MTQg
@@ -45,8 +44,7 @@ ZyGG5J2X11bu+iGKHFoqmi1h7dTArITY2/9jrBdPWLFLlrLvu7O6hL2ksTIWsglB
 MD56xZSRcrPRtLxKjbdCRcWvd/n/7VA7BODqKJd0FXgQJAE5fzAUO9A++oHvBgmv
 jh9ge5bI87vP6nqpKHiJK+fHkVIx0e+wzj+YFRLdRDalF0jOH3HflTb4KeKD86qr
 b/7zt3lYlh3vu24KRryaTjpzw4EDOIAc8aVW8UX7UDtvc/yziAbL2/psZviHsjzo
-PD4S4tnLAnh5eg0G53oZuLKaHDCWvPQ0M85CjiX6hzE2gvSFmw==
------END CERTIFICATE-----`,
+PD4S4tnLAnh5eg0G53oZuLKaHDCWvPQ0M85CjiX6hzE2gvSFmw==`,
       },
       models: [User, Transaction],
       autoLoadModels: true,
